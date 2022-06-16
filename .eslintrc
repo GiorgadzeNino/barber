@@ -1,0 +1,55 @@
+{
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "rules": {
+      "camelcase": 0,
+      "max-len": [
+        "warn",
+        150
+      ],
+      "comma-dangle": [
+        "error",
+        "never"
+      ],
+      // "indent": [
+      //   "warn",
+      //   2
+      // ],
+      "semi": [
+        "warn",
+        "never"
+      ],
+      "no-unused-vars": "warn",
+      "object-curly-spacing": [
+        "error",
+        "always"
+      ],
+      "quotes": [
+        "error",
+        "single"
+      ],
+      "no-confusing-arrow": "warn",
+      "no-empty-function": "warn",
+      "no-lone-blocks": "error",
+      "no-multi-spaces": "error",
+      "no-underscore-dangle": "warn",
+      "no-dupe-else-if": "warn",
+      "arrow-parens": "warn",
+      "default-case": "error",
+      "react/jsx-wrap-multilines": 0,
+      "complexity": [
+        "error",
+        35
+      ]
+    }
+  }
+  

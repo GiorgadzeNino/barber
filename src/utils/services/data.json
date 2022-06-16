@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "userType": "Barber",
+        "email": "nino.giorgadze104@ens.tsu.edu.ge",
+        "firstname": "Nino",
+        "lastname": "Giorgadze",
+        "price": "100",
+        "address": "Tbilisi",
+        "password": "123123"
+    },
+    {
+        "id": 2,
+        "userType": "Barber",
+        "firstname": "Nino",
+        "lastname": "Giorgadze",
+        "email": "nino.giorgadze104@ens.tsu.edu.ge",
+        "address": "Tbilisi",
+        "price": "100",
+        "password": "123123"
+    },
+    {
+        "id": 3,
+        "userType": "consumer",
+        "firstname": null,
+        "lastname": null,
+        "email": "janeDoe@gmail.com",
+        "address": null,
+        "price": null,
+        "password": "123123"
+    }
+]

@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import { Routes, Route } from 'react-router-dom'
+import axios from 'axios'
 
-function App() {
+import Header from './components/Header'
+import Products from './pages/Products'
+import Cart from './pages/Cart'
+import Product from './pages/Product'
+import Registration from './pages/Registration'
+import Auth from './pages/Auth'
+import Barbers from './pages/Barbers'
+
+// **სავალდებულო
+// გადააკეთეთ კლას კომპონენტები თანამედროვე ფუნქციურ კომპონენტებად.
+
+// **დამატებითი
+// შეძლებისდაგვარად გასტილეთ უკეთესად
+// დაუმატეთ cartიდან წაშლის ფუნქციონალი
+// დაუმატეთ ფუნქციონალი რომ ერთიდაიგივე აითემი, მრავალჯერ არ განმეორდეს,
+// უბრალოდ იყოს რაოდენობა. მაგ: თუ ვიყიდი 3 ქურთუკს, უნდა მიჩანდეს რომ ვიყიდე 3 ცალი
+// და არ გამომიჩნდეს 3ჯერ
+// ასევე კარგი იქნება დაამატოთ, რაოდენობი გაზრდა-დაპატარავების ფუნქციონალი
+const App = () => {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="flex flex-col">
+      <Header />
+      <Routes>
+        <Route path='/' exact
+          element={<Products />} />
+        <Route path='/products/:productId' exact element={<Product />} />
+        <Route path='/cart' exact element={<Cart />} />
+        <Route path='/barbers' exact element={<Barbers />} />
+        <Route path='/auth/signup' exact element={<Registration />} />
+        <Route path='/auth/signIn' exact element={<Auth />} />
+      </Routes>
     </div>
-  );
+  )
+
 }
 
-export default App;
+export default App
