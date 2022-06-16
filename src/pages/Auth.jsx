@@ -15,7 +15,6 @@ const Auth = () => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-
             <input {...register('email', { required: true })} placeholder='email' />
             <input {...register('password', { required: true })} placeholder='password' />
             <input type='submit' />
