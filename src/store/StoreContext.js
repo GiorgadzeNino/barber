@@ -38,7 +38,8 @@ const StoreProvider = ({ children }) => {
       firstname: user.firstname ? user.firstname : null,
       lastname: user.lastname ? user.lastname : null,
       price: user.price ? user.price : null,
-      address: user.address ? user.address : null
+      address: user.address ? user.address : null,
+      password: user.password
     }
     console.log(newUser)
     setUsers((prev) => [...prev, newUser])
