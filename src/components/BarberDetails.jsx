@@ -53,8 +53,8 @@ const BarberDetails = () => {
                     <div className="font-bold text-xl mb-2">{barber?.firstname} {barber?.lastname}</div>
                     <div>{barber?.email}</div>
                     <div>{barber?.address}</div>
-                    <div>{barber?.price}</div>
-                    <div>{barber?.review}</div>
+                    <div>{barber?.price} ₾</div>
+                    {/* <div>{barber?.review}</div> */}
 
                     {Array.apply(0, Array(barber?.review)).map(() => {
                         return '★'
