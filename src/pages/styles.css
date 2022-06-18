@@ -153,3 +153,12 @@ button {
   cursor: pointer;
   font-size: 35px;
 }
+
+.reviews {
+  display: grid;
+  justify-content: center;
+}
+
+.width {
+  width: 50%;
+}

@@ -11,26 +11,33 @@ const BarberDetails = () => {
     const { users, booked, isLoading, handleBookBarber, handleAddReview } = useStore()
     const [barber, setBarber] = useState()
     const [message, setMessage] = useState('')
-    const [reviewCount, setReviewCount] = useState()
+    const [changed, setChanged] = useState(false)
 
+    const [reviewCount, setReviewCount] = useState()
+    const stars = [1, 2, 3, 4, 5]
     const params = useParams()
 
     const handleChange = (event) => {
         setMessage(event.target.value)
     }
     const handleClick = (count) => {
+        console.log(count)
         setReviewCount(count)
+        setChanged(true)
     }
-
-
-    console.log(params); // 👉️ {userId: '4200'}
+    const handleAdd = () => {
+        const activeBarber = users.find((item) => item.id == params.barberId)
+        setBarber(activeBarber)
+        console.log(barber)
+        handleAddReview(barber, message, reviewCount)
+        setChanged(true)
+    }
 
     useEffect(() => {
         const activeBarber = users.find((item) => item.id == params.barberId)
         setBarber(activeBarber)
-        console.log(activeBarber)
-        console.log(barber)
-    }, [params.barberId, booked])
+        setChanged(false)
+    })
 
     const renderContent = () => (
         <>
@@ -57,17 +64,24 @@ const BarberDetails = () => {
 
                 </div>
 
-                {
-                    barber?.reviewsList?.map((item) => { item })
-                }
+                <button className='z-50 p-2 mt-4 text-white bg-blue-500 rounded-lg w-28'
+                    onClick={() => handleBookBarber(barber)}>Book</button>
 
             </div>
-
-            <button className='z-50 p-2 mt-4 text-white bg-blue-500 rounded-lg w-28'
-                onClick={() => handleBookBarber(barber)}>Book</button>
-            {
-                renderReview()
-            }
+            <div className='reviews'>
+                {
+                    barber && barber.reviewsList.length ? barber?.reviewsList.map(
+                        (item, i) => <div key={i}>{item}</div>
+                    ) : null
+                }
+            </div>
+            <div className='w-full flex justify-content-center'>
+                <div className='width'>
+                    {
+                        renderReview()
+                    }
+                </div>
+            </div>
         </>
     )
 
@@ -81,8 +95,10 @@ const BarberDetails = () => {
     const renderReviewData = () => (
         <>
             <div className='flex justify-content-center'>
-                {Array.apply(0, Array(barber?.review)).map(function (x, i) {
-                    return <div key={i} value={i} className='star' onClick={() => handleClick(i)}>☆</div>
+                {stars.map((value, i) => {
+                    return value <= reviewCount ?
+                        <div key={i} value={value} className='star' onClick={() => handleClick(value)}>★</div> :
+                        <div key={i} value={value} className='star' onClick={() => handleClick(value)}>☆</div>
                 })}
             </div>
             <div className='flex items-center justify-between  md:mr-2 md:mb-0 mb-2'>
@@ -100,9 +116,10 @@ const BarberDetails = () => {
                     onChange={handleChange}
                 />
             </div>
-
-            <button className='z-50 p-2 mt-4 text-white bg-blue-500 rounded-lg w-28'
-                onClick={() => handleAddReview(barber, message, reviewCount)}>Add review</button>
+            <div className='flex justify-content-center'>
+                <button className='z-50 p-2 mt-4 text-white bg-blue-500 rounded-lg w-28'
+                    onClick={() => handleAdd()}>Add review</button>
+            </div>
         </>
     )
 

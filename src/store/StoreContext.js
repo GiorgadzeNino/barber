@@ -18,9 +18,17 @@ const StoreProvider = ({ children }) => {
 
   const [userType, setUserType] = useState('consumer')
   const [users, setUsers] = useState(userList)
-  const [barbers, setBarbers] = useState()
   const [isAutheticated, setisAutheticated] = useState(false)
   const [booked, setBooked] = useState()
+  const [barbers, setBarbers] = useState(
+    () => {
+      const barb = [];
+      userList.map(
+        (item, i) => item.userType == 'barber' ? barb.push(item) : null
+      )
+      return barb
+    }
+  )
 
   const handleAddProduct = (product) => {
     setCart((prev) => [...prev, product])
@@ -41,10 +49,11 @@ const StoreProvider = ({ children }) => {
     console.log(users)
   }
 
-  const handleAddReview = (barber, message) => {
+  const handleAddReview = (barber, message, star) => {
     console.log(message)
     const index = users.findIndex((item) => item.id == barber.id)
     const newData = users
+    newData[index].review = star
     newData[index].reviewsList.push(message)
     setUsers(newData)
     console.log(users)
@@ -66,7 +75,7 @@ const StoreProvider = ({ children }) => {
     setUsers((prev) => [...prev, newUser])
     console.log(users)
 
-    // navigate('/barbers')
+    navigate('/barbers')
     console.log(users)
     console.log(products)
     console.log(cart)
@@ -83,6 +92,8 @@ const StoreProvider = ({ children }) => {
         newBarbers.push(element)
       }
     })
+
+    navigate('/barbers')
     setBarbers(newBarbers)
     console.log(barbers)
     const data = users
