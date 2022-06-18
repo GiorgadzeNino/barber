@@ -2,11 +2,11 @@ import { Navigate } from 'react-router-dom'
 
 export const AuthorizedRoutes = ({
     user,
-    redirectPath = '/auth/login',
+    redirectUrl = '/auth/signin',
     children
 }) => {
     if (!user) {
-        return <Navigate to={redirectPath} replace />
+        return <Navigate to={redirectUrl} replace />
     }
 
     return children
@@ -14,11 +14,11 @@ export const AuthorizedRoutes = ({
 
 export const UnauthorizedRoutes = ({
     user,
-    redirectPath = '/dashboard',
+    redirectUrl = '/dashboard',
     children
 }) => {
     if (user) {
-        return <Navigate to={redirectPath} replace />
+        return <Navigate to={redirectUrl} replace />
     }
 
     return children

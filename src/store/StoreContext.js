@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useReducer, useState } from 'react'
-import { getAllProducts } from '../utils/services/products'
-import userList from '../utils/services/data.json'
-import Product from '../components/Product'
+// import { getAllProducts } from '../utils/services/products'
+import userList from '../utils/dummyData/data.json'
+// import Product from '../components/Product'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -124,22 +124,6 @@ const StoreProvider = ({ children }) => {
     localStorage.clear();
     navigate('/auth/signin')
   }
-
-  useEffect(() => {
-    const getProducts = async () => {
-      setIsLoading(true)
-      try {
-        const data = await getAllProducts()
-        setProducts(data.data)
-        setIsLoading(false)
-      } catch (err) {
-        console.log('Error occured', err)
-        setIsLoading(false)
-      }
-    }
-
-    getProducts()
-  }, [])
 
   const globalState = {
     products,
