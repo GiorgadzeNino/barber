@@ -7,7 +7,7 @@ import Barbers from '../pages/Barbers'
 import { useForm } from 'react-hook-form'
 
 const BarberDetails = () => {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm()
+    const { register, isAuthenticated, handleSubmit, watch, formState: { errors } } = useForm()
     const { users, booked, isLoading, handleBookBarber, handleAddReview } = useStore()
     const [barber, setBarber] = useState()
     const [message, setMessage] = useState('')
@@ -37,7 +37,7 @@ const BarberDetails = () => {
         const activeBarber = users.find((item) => item.id == params.barberId)
         setBarber(activeBarber)
         setChanged(false)
-    })
+    }, [changed])
 
     const renderContent = () => (
         <>
@@ -65,7 +65,7 @@ const BarberDetails = () => {
                 </div>
 
                 <button className='z-50 p-2 mt-4 text-white bg-blue-500 rounded-lg w-28'
-                    onClick={() => handleBookBarber(barber)}>Book</button>
+                    onClick={() => handleBookBarber(barber)} disabled={isAuthenticated}>Book</button>
 
             </div>
             <div className='reviews'>

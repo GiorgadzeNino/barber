@@ -18,13 +18,15 @@ const StoreProvider = ({ children }) => {
 
   const [userType, setUserType] = useState('consumer')
   const [users, setUsers] = useState(userList)
-  const [isAutheticated, setisAutheticated] = useState(false)
+  const [isAuthenticated, setisAuthenticated] = useState(false)
   const [booked, setBooked] = useState()
   const [barbers, setBarbers] = useState(
     () => {
       const barb = [];
       userList.map(
-        (item, i) => item.userType == 'barber' ? barb.push(item) : null
+        (item) => {
+          item.userType === 'barber' ? barb.push(item) : null
+        }
       )
       return barb
     }
@@ -40,13 +42,17 @@ const StoreProvider = ({ children }) => {
   }
 
   const handleBookBarber = (barber) => {
-    console.log(barber)
-    const index = users.findIndex((item) => item.id == barber.id)
-    const newData = users;
-    newData[index].isBooked = true
-    setUsers(newData)
-    setBooked(true)
-    console.log(users)
+    if (isAuthenticated) {
+      console.log(isAuthenticated)
+      const index = users.findIndex((item) => item.id == barber.id)
+      const newData = users
+      newData[index].isBooked = true
+      setUsers(newData)
+      setBooked(true)
+      console.log(users)
+    } else {
+      navigate('/auth/signin')
+    }
   }
 
   const handleAddReview = (barber, message, star) => {
@@ -100,13 +106,13 @@ const StoreProvider = ({ children }) => {
 
     const person = data.find((item) => (item.email === user.email && item.password === user.password))
     // save email to localStorage
-    console.log(isAutheticated)
+    console.log(isAuthenticated)
     console.log(person)
     if (person?.userType == 'consumer') {
       localStorage.setItem('email', person.email)
-      setisAutheticated(true)
+      setisAuthenticated(true)
     }
-    console.log(isAutheticated)
+    console.log(isAuthenticated)
   }
 
   const isLoggedIn = () => {
@@ -114,8 +120,9 @@ const StoreProvider = ({ children }) => {
   }
 
   const logout = () => {
-    setisAutheticated(false)
-    console.log('loggedInUser:' + isAutheticated)
+    setisAuthenticated(false)
+    localStorage.clear();
+    navigate('/auth/signin')
   }
 
   useEffect(() => {
@@ -143,12 +150,15 @@ const StoreProvider = ({ children }) => {
     users,
     barbers,
     booked,
+    isAuthenticated,
     handleChooseUser,
     handleAddUser,
     handleCheckUser,
     isLoggedIn,
     handleBookBarber,
-    handleAddReview
+    handleAddReview,
+    logout
+
   }
 
   return (
