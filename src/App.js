@@ -9,6 +9,7 @@ import Product from './pages/Product'
 import Registration from './pages/Registration'
 import Auth from './pages/Auth'
 import Barbers from './pages/Barbers'
+import BarberDetails from './components/BarberDetails'
 
 // **სავალდებულო
 // გადააკეთეთ კლას კომპონენტები თანამედროვე ფუნქციურ კომპონენტებად.
@@ -28,7 +29,7 @@ const App = () => {
       <Routes>
         <Route path='/' exact
           element={<Products />} />
-        <Route path='/products/:productId' exact element={<Product />} />
+        <Route path='/barber/:barberId' exact element={<BarberDetails />} />
         <Route path='/cart' exact element={<Cart />} />
         <Route path='/barbers' exact element={<Barbers />} />
         <Route path='/auth/signup' exact element={<Registration />} />

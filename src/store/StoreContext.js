@@ -18,7 +18,9 @@ const StoreProvider = ({ children }) => {
 
   const [userType, setUserType] = useState('consumer')
   const [users, setUsers] = useState(userList)
-  const [isAutheticated, setisAutheticated] = useState(false);
+  const [barbers, setBarbers] = useState()
+  const [isAutheticated, setisAutheticated] = useState(false)
+  const [booked, setBooked] = useState()
 
   const handleAddProduct = (product) => {
     setCart((prev) => [...prev, product])
@@ -29,6 +31,25 @@ const StoreProvider = ({ children }) => {
     setUserType(event.target.value)
   }
 
+  const handleBookBarber = (barber) => {
+    console.log(barber)
+    const index = users.findIndex((item) => item.id == barber.id)
+    const newData = users;
+    newData[index].isBooked = true
+    setUsers(newData)
+    setBooked(true)
+    console.log(users)
+  }
+
+  const handleAddReview = (barber, message) => {
+    console.log(message)
+    const index = users.findIndex((item) => item.id == barber.id)
+    const newData = users
+    newData[index].reviewsList.push(message)
+    setUsers(newData)
+    console.log(users)
+
+  }
   const handleAddUser = (user) => {
     console.log(user)
     const newUser = {
@@ -41,7 +62,7 @@ const StoreProvider = ({ children }) => {
       address: user.address ? user.address : null,
       password: user.password
     }
-    console.log(newUser)
+    console.log(products)
     setUsers((prev) => [...prev, newUser])
     console.log(users)
 
@@ -55,10 +76,18 @@ const StoreProvider = ({ children }) => {
 
   const handleCheckUser = (user) => {
     console.log(user)
+    const newBarbers = []
+    users.forEach((element) => {
+      // debugger
+      if (element.userType === 'barber') {
+        newBarbers.push(element)
+      }
+    })
+    setBarbers(newBarbers)
+    console.log(barbers)
     const data = users
-    console.log(data)
 
-    const person = data.find((item) => (item.email === user.email))
+    const person = data.find((item) => (item.email === user.email && item.password === user.password))
     // save email to localStorage
     console.log(isAutheticated)
     console.log(person)
@@ -77,6 +106,7 @@ const StoreProvider = ({ children }) => {
     setisAutheticated(false)
     console.log('loggedInUser:' + isAutheticated)
   }
+
   useEffect(() => {
     const getProducts = async () => {
       setIsLoading(true)
@@ -100,10 +130,14 @@ const StoreProvider = ({ children }) => {
     handleAddProduct,
     userType,
     users,
+    barbers,
+    booked,
     handleChooseUser,
     handleAddUser,
     handleCheckUser,
-    isLoggedIn
+    isLoggedIn,
+    handleBookBarber,
+    handleAddReview
   }
 
   return (

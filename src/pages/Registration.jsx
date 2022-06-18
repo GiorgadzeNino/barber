@@ -1,7 +1,5 @@
-import Product from '../components/Product'
 import { useStore } from '../store/StoreContext'
 import { useForm } from 'react-hook-form'
-import styles from './styles.css'
 
 const Registration = () => {
 

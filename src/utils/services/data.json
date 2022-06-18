@@ -1,23 +1,35 @@
 [
     {
         "id": 1,
-        "userType": "Barber",
-        "email": "nino.giorgadze104@ens.tsu.edu.ge",
-        "firstname": "Nino",
-        "lastname": "Giorgadze",
+        "userType": "barber",
+        "email": "john@gmail.com",
+        "firstname": "John",
+        "lastname": "Doe",
         "price": "100",
         "address": "Tbilisi",
-        "password": "123123"
+        "password": "123123",
+        "review": 5,
+        "reviewsList": [
+            "He is proffesional barber",
+            "He is proffesional barber"
+        ],
+        "isBooked": false
     },
     {
         "id": 2,
-        "userType": "Barber",
-        "firstname": "Nino",
-        "lastname": "Giorgadze",
-        "email": "nino.giorgadze104@ens.tsu.edu.ge",
+        "userType": "barber",
+        "firstname": "Jane",
+        "lastname": "Doe",
+        "email": "Jane@gmail.com",
         "address": "Tbilisi",
         "price": "100",
-        "password": "123123"
+        "password": "123123",
+        "review": 4,
+        "reviewsList": [
+            "I am not satisfied",
+            "He is proffesional barber"
+        ],
+        "isBooked": true
     },
     {
         "id": 3,
@@ -27,6 +39,9 @@
         "email": "janeDoe@gmail.com",
         "address": null,
         "price": null,
-        "password": "123123"
+        "password": "123123",
+        "review": null,
+        "reviewsList": [],
+        "isBooked": false
     }
 ]

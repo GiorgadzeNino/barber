@@ -140,3 +140,16 @@ button {
 .userType {
   justify-content: center;
 }
+
+.barber {
+  width: 250px;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.star {
+  cursor: pointer;
+  font-size: 35px;
+}

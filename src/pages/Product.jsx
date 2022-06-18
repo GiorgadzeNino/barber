@@ -14,8 +14,6 @@ class Product extends Component {
     }
   }
   
-
-
   componentDidMount(){
     this.setState((prevState) => {
       return { prevState, loading: true }
@@ -36,26 +34,26 @@ class Product extends Component {
   }
 
   render(){
-    const { product, loading } = this.state 
+    const { barber, loading } = this.state 
     const { handleAddProduct } = this.props
 
     const renderProduct = () => (
       <div className='flex flex-col items-center w-1/2 mt-20'>
-        <h1>{product.title}</h1>
-        <img src={product.image} className='w-40 h-40' />
-        <p className='mt-4'>{product.description}</p>
+        <h1>{barber.title}</h1>
+        <img src={barber.image} className='w-40 h-40' />
+        <p className='mt-4'>{barber.description}</p>
         <div className='flex justify-between w-full mt-6'>
-          <p>Rating: {product.rating.rate}</p>
-          <p>Price: ${product.price}</p>
+          <p>Rating: {barber.rating.rate}</p>
+          <p>Price: ${barber.price}</p>
         </div>
         <button className='z-50 p-2 mt-4 text-white bg-blue-500 rounded-lg w-28'
-          onClick={() => handleAddProduct(product)}>Add to Cart</button>
+          onClick={() => handleAddProduct(barber)}>Add to Cart</button>
       </div>
     )
 
     const renderContent = () => (
       <>
-        {!product.id ? <Loader /> : renderProduct()}
+        {!barber.id ? <Loader /> : renderProduct()}
       </>
     )
     return(
