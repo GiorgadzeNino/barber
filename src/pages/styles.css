@@ -166,3 +166,7 @@ button {
 .width {
   width: 50%;
 }
+
+.auth-form {
+  max-width: 400px;
+}
