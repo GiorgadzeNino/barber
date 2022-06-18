@@ -1,9 +1,6 @@
-import React, { useContext, useEffect, useReducer, useState } from 'react'
-// import { getAllProducts } from '../utils/services/products'
-import userList from '../utils/dummyData/data.json'
-// import Product from '../components/Product'
+import React, { useContext, useState } from 'react'
+import userList from '../dummyData/data.json'
 import { useNavigate } from 'react-router-dom'
-
 
 export const StoreContext = React.createContext()
 
@@ -11,18 +8,13 @@ export const useStore = () => useContext(StoreContext)
 
 
 const StoreProvider = ({ children }) => {
-
-  const [products, setProducts] = useState([])
-  const [cart, setCart] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
-
   const [userType, setUserType] = useState('consumer')
   const [users, setUsers] = useState(userList)
   const [isAuthenticated, setisAuthenticated] = useState(false)
   const [booked, setBooked] = useState()
   const [barbers, setBarbers] = useState(
     () => {
-      const barb = [];
+      const barb = []
       userList.map(
         (item) => {
           item.userType === 'barber' ? barb.push(item) : null
@@ -32,9 +24,6 @@ const StoreProvider = ({ children }) => {
     }
   )
 
-  const handleAddProduct = (product) => {
-    setCart((prev) => [...prev, product])
-  }
   const navigate = useNavigate()
   const handleChooseUser = (event) => {
     console.log(event.target.value)
@@ -66,7 +55,6 @@ const StoreProvider = ({ children }) => {
 
   }
   const handleAddUser = (user) => {
-    console.log(user)
     const newUser = {
       id: users.length + 1,
       userType: user.userType,
@@ -79,21 +67,14 @@ const StoreProvider = ({ children }) => {
     }
     console.log(products)
     setUsers((prev) => [...prev, newUser])
-    console.log(users)
-
     navigate('/barbers')
-    console.log(users)
-    console.log(products)
-    console.log(cart)
 
-    // return <Navigate push to='/cart' />
   }
 
   const handleCheckUser = (user) => {
     console.log(user)
     const newBarbers = []
     users.forEach((element) => {
-      // debugger
       if (element.userType === 'barber') {
         newBarbers.push(element)
       }
@@ -106,8 +87,6 @@ const StoreProvider = ({ children }) => {
 
     const person = data.find((item) => (item.email === user.email && item.password === user.password))
     // save email to localStorage
-    console.log(isAuthenticated)
-    console.log(person)
     if (person?.userType == 'consumer') {
       localStorage.setItem('email', person.email)
       setisAuthenticated(true)
@@ -121,15 +100,11 @@ const StoreProvider = ({ children }) => {
 
   const logout = () => {
     setisAuthenticated(false)
-    localStorage.clear();
+    localStorage.clear()
     navigate('/auth/signin')
   }
 
   const globalState = {
-    products,
-    cart,
-    isLoading,
-    handleAddProduct,
     userType,
     users,
     barbers,

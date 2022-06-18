@@ -10,8 +10,8 @@ const Header = () => {
   console.log('context')
   return (
     <div className='flex items-center justify-between px-10 bg-slate-700 h-14'>
-      <Link to='/' className='text-white cursor-pointer'>
-        {isAuthenticated}
+      <Link to='/barbers' className='text-white cursor-pointer'>
+       Barber
       </Link>
       <div>
         {
@@ -22,7 +22,7 @@ const Header = () => {
               <Link to='/auth/signup' className='text-xl text-white cursor-pointer'>
                 Sign up
               </Link>
-              <Link to='/auth/signin' className='text-xl text-white cursor-pointer'>
+              <Link to='/auth/signin' className='ml-10 text-xl text-white cursor-pointer'>
                 Sign in
               </Link>
             </div>

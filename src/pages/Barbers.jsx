@@ -1,14 +1,13 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 
 import Barber from '../components/Barber'
-import Loader from '../components/Loader'
 
 import { useStore } from '../store/StoreContext'
 
 const Barbers = () => {
 
-    const { barbers, isLoading } = useStore()
+    const { barbers } = useStore()
 
     console.log('products context')
 
@@ -30,7 +29,7 @@ const Barbers = () => {
 
     const renderContent = () => (
         <>
-            {isLoading ? <Loader /> : renderData()}
+            {renderData()}
         </>
     )
 

@@ -5,6 +5,7 @@ import Registration from './pages/Registration'
 import Auth from './pages/Auth'
 import Barbers from './pages/Barbers'
 import BarberDetails from './components/BarberDetails'
+import './pages/styles.css'
 
 const App = () => {
 
@@ -12,8 +13,8 @@ const App = () => {
     <div className="flex flex-col">
       <Header />
       <Routes>
-        {/* <Route path='/' exact
-          element={<Products />} /> */}
+        <Route path='/' exact
+          element={<Barbers />} />
         <Route path='/barber/:barberId' exact element={<BarberDetails />} />
         {/* <Route path='/cart' exact element={<Cart />} /> */}
         <Route path='/barbers' exact element={<Barbers />} />

@@ -3,9 +3,9 @@ import { useForm } from 'react-hook-form'
 
 const Registration = () => {
 
-    const { userType, users, handleChooseUser, handleAddUser } = useStore()
-    const { register, handleSubmit, watch, formState: { errors } } = useForm()
-    const onSubmit = user => {
+    const { userType, handleChooseUser, handleAddUser } = useStore()
+    const { register, handleSubmit, formState: { errors } } = useForm()
+    const onSubmit = (user) => {
         console.log(user)
         handleAddUser(user)
     }
@@ -17,17 +17,13 @@ const Registration = () => {
                 <div>
                     <div className='container mx-auto'>
                         <div className='flex justify-center px-6 my-12'>
-                            {/* <!-- Row --> */}
                             <div className='py-4 px-4 w-full xl:w-3/4 lg:w-11/12 flex'>
-                                {/* <!-- Col --> */}
                                 <div
                                     className='bgr-img w-full h-auto bg-gray-400 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg'
-                                // style='background-image: url('https://source.unsplash.com/Mv9hjnEUHR4/600x800')'
                                 ></div>
-                                {/* <!-- Col --> */}
+
                                 <div className='px-4 py-4 w-full lg:w-7/12 bg-white p-5 rounded-lg lg:rounded-l-none'>
-                                    {/* <h3 className='pt-4 text-2xl text-center'>Create an Account!</h3> */}
-                                    {/* <form className='px-8 pt-6 pb-8  bg-white rounded'> */}
+
                                     <div className=' md:flex md:justify-between'>
                                         <div className='flex items-center justify-between  md:mr-2 md:mb-0 mb-2'>
                                             <label className='block mb-2 text-sm font-bold text-gray-700' htmlFor='firstname'>
@@ -104,25 +100,13 @@ const Registration = () => {
                                             <input
                                                 {...register('password', { required: true })}
                                                 className='w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border
-                                                 border-red-500 rounded shadow appearance-none focus:outline-none focus:shadow-outline'
+                                                 rounded shadow appearance-none focus:outline-none focus:shadow-outline'
                                                 id='password'
                                                 type='password'
                                                 placeholder='******************'
                                             />
-                                            {/* <p className='text-xs italic text-red-500'>Please choose a password.</p> */}
                                         </div>
-                                        {/* <div className='flex items-center justify-between md:ml-2'>
-                                            <label className='block mb-2 text-sm font-bold text-gray-700' htmlFor='c_password'>
-                                                Confirm Password
-                                            </label>
-                                            <input
-                                                className='w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border 
-                                                rounded shadow appearance-none focus:outline-none focus:shadow-outline'
-                                                id='c_password'
-                                                type='password'
-                                                placeholder='******************'
-                                            />
-                                        </div> */}
+
                                     </div>
                                     <div className='mb-6 text-center'>
                                         <button
@@ -141,28 +125,20 @@ const Registration = () => {
                                             Already have an account? Login!
                                         </a>
                                     </div>
-                                    {/* </form> */}
                                 </div>
                             </div>
                         </div>
                     </div>
-                    {/* </body> */}
-                    {/* </body> */}
                 </div>
                 : <div className='container mx-auto'>
                     <div className='flex justify-center px-6 my-12'>
-                        {/* <!-- Row --> */}
                         <div className='py-4 px-4 w-full xl:w-3/4 lg:w-11/12 flex'>
-                            {/* <!-- Col --> */}
                             <div
                                 className='bgr-img w-full h-auto bg-gray-400 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg'
-                            // style='background-image: url('https://source.unsplash.com/Mv9hjnEUHR4/600x800')'
                             ></div>
-                            {/* <!-- Col --> */}
+
                             <div className='px-4 py-4 w-full lg:w-7/12 bg-white p-5 rounded-lg lg:rounded-l-none'>
 
-                                {/* <input {...register('email', { required: true })} placeholder='email' />
-                    <input {...register('password', { required: true })} placeholder='password' type='password' /> */}
                                 <div className=' flex items-center justify-between'>
                                     <label className='block mb-2 text-sm font-bold text-gray-700' htmlFor='email'>
                                         Email
@@ -225,6 +201,7 @@ const Registration = () => {
                 <div className='flex items-center'>
                     <input type='radio' {...register('userType')} value='consumer' name='userType' id='consumer' className='mt-2' defaultChecked />
                     <label htmlFor='consumer'>consumer</label>
+
                 </div><div className='flex items-center px-4'>
                     <input type='radio' {...register('userType')} value='barber' name='userType' id='barber' className='mt-2' />
                     <label htmlFor='barber'>barber</label>

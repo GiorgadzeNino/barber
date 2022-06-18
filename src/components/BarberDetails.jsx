@@ -1,14 +1,12 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
-import { Route, Link, Routes, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useStore } from '../store/StoreContext'
-import Loader from '../components/Loader'
-import Barbers from '../pages/Barbers'
 import { useForm } from 'react-hook-form'
 
 const BarberDetails = () => {
-    const { register, isAuthenticated, handleSubmit, watch, formState: { errors } } = useForm()
-    const { users, booked, isLoading, handleBookBarber, handleAddReview } = useStore()
+    const { register, isAuthenticated } = useForm()
+    const { users, handleBookBarber, handleAddReview } = useStore()
     const [barber, setBarber] = useState()
     const [message, setMessage] = useState('')
     const [changed, setChanged] = useState(false)
@@ -41,7 +39,7 @@ const BarberDetails = () => {
 
     const renderContent = () => (
         <>
-            {isLoading ? <Loader /> : renderData()}
+            {renderData()}
         </>
     )
 
@@ -58,7 +56,7 @@ const BarberDetails = () => {
                     <div>{barber?.price}</div>
                     <div>{barber?.review}</div>
 
-                    {Array.apply(0, Array(barber?.review)).map(function (x, i) {
+                    {Array.apply(0, Array(barber?.review)).map(() => {
                         return '★'
                     })}
 
